@@ -8,8 +8,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
         <IsPackable>false</IsPackable>
-        <AssemblyVersion>2.3.0.0</AssemblyVersion>
-        <FileVersion>2.3.0.0</FileVersion>
+        <AssemblyVersion>2.5.0.0</AssemblyVersion>
+        <FileVersion>2.5.0.0</FileVersion>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>AIO.snk</AssemblyOriginatorKeyFile>
         <PublicSign>true</PublicSign>
@@ -17,9 +17,12 @@
         <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <DebugType>portable</DebugType>
-        <AssemblyName>EFCD0733-A3F8-4176-83BE-175FC882D984</AssemblyName>
+        <AssemblyName>yeahgosuckmydickwiththisblacklistshit</AssemblyName>
         <PlatformTarget>x64</PlatformTarget>
         <ApplicationManifest>app.manifest</ApplicationManifest>
+        <Company>yeahgosuckmydickwiththisblacklistshit</Company>
+        <Product>yeahgosuckmydickwiththisblacklistshit</Product>
+        <NeutralLanguage>en-US</NeutralLanguage>
     </PropertyGroup>
 
     <ItemGroup>
