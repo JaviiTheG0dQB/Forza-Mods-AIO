@@ -4,11 +4,14 @@ using System.Windows;
 using System.Windows.Media;
 using ControlzEx.Theming;
 using static System.Windows.Media.ColorConverter;
+using Forza_Mods_AIO.Helpers;
 
 namespace Forza_Mods_AIO.Resources.Theme;
 
 public sealed class Theming : INotifyPropertyChanged
 {
+    private static readonly Color DefaultThemeColor = (Color)ConvertFromString("#4C566A");
+    
     private static Theming _instance = null!;
     public static Theming GetInstance()
     {
@@ -49,27 +52,63 @@ public sealed class Theming : INotifyPropertyChanged
 
     public void ChangeColor(Color color = default)
     {
-        if (color != default)
-        {
-            // TODO: Implement
-        }
+        if (color == default)
+            return;
         
-        MainColour = new SolidColorBrush((Color)ConvertFromString("#FFFFFF"));
-        DarkishColour = new SolidColorBrush((Color)ConvertFromString("#EEEEEE"));
-        DarkColour = new SolidColorBrush((Color)ConvertFromString("#DDDDDD"));
-        DarkerColour = new SolidColorBrush((Color)ConvertFromString("#CCCCCC"));
+        // Store the main color
+        MainColourAsColour = color;
         
-        var converted = (Color)ColorConverter.ConvertFromString("#DDDDDD");
-        const string name = "dsrgdfgsdfgdgdrhdrtfhdf";
-        ThemeManager.Current.AddTheme(new ControlzEx.Theming.Theme(name,
-            name,
+        // Save the color to settings
+        Settings.SaveThemeColor(color);
+        
+        // Create a darker shade for each level
+        var darkish = Color.FromRgb(
+            (byte)(color.R * 0.9),
+            (byte)(color.G * 0.9),
+            (byte)(color.B * 0.9));
+        
+        var dark = Color.FromRgb(
+            (byte)(color.R * 0.8),
+            (byte)(color.G * 0.8),
+            (byte)(color.B * 0.8));
+        
+        var darker = Color.FromRgb(
+            (byte)(color.R * 0.7),
+            (byte)(color.G * 0.7),
+            (byte)(color.B * 0.7));
+
+        // Update the brushes
+        MainColour = new SolidColorBrush(color);
+        DarkishColour = new SolidColorBrush(darkish);
+        DarkColour = new SolidColorBrush(dark);
+        DarkerColour = new SolidColorBrush(darker);
+
+        // Create and apply the theme
+        var themeName = $"CustomTheme_{color.ToString()}";
+        ThemeManager.Current.AddTheme(new ControlzEx.Theming.Theme(themeName,
+            themeName,
             "Dark",
             "Red",
-            converted,
-            new SolidColorBrush(converted),
+            color,
+            new SolidColorBrush(color),
             false,
             false));
-        ThemeManager.Current.ChangeTheme(Application.Current, name);
+        ThemeManager.Current.ChangeTheme(Application.Current, themeName);
+    }
+
+    // Add a method to initialize the theme
+    public void InitializeTheme()
+    {
+        var savedColor = Settings.LoadThemeColor();
+        if (savedColor.HasValue)
+        {
+            ChangeColor(savedColor.Value);
+        }
+    }
+
+    public void ResetTheme()
+    {
+        ChangeColor(DefaultThemeColor);
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

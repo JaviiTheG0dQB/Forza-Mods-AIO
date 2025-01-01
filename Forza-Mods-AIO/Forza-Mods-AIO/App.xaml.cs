@@ -3,6 +3,7 @@ using Forza_Mods_AIO.Cheats;
 using Forza_Mods_AIO.Models;
 using Forza_Mods_AIO.Resources;
 using Forza_Mods_AIO.Resources.Keybinds;
+using Forza_Mods_AIO.Resources.Theme;
 using Forza_Mods_AIO.Services;
 using Forza_Mods_AIO.ViewModels.Windows;
 using Forza_Mods_AIO.Views.Windows;
@@ -69,6 +70,9 @@ public partial class App
             MessageBox.Show("Another instance of the tool is already running.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             Current.Shutdown();
         }
+
+        // Initialize the theme
+        Theming.GetInstance().InitializeTheme();
     }
     
     // https://stackoverflow.com/a/46804709
