@@ -323,5 +323,6 @@
     <system:String x:Key="Turkish">Turkish</system:String>
     <system:String x:Key="Ukrainian">Ukrainian</system:String>
     <system:String x:Key="Vietnamese">Vietnamese</system:String>
+    <system:String x:Key="ResetTheme">Reset Theme</system:String>
     
 </ResourceDictionary>

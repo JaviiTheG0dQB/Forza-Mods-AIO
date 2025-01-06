@@ -26,12 +26,14 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 
                 <mah:ColorPicker Grid.Column="0"
                                  Background="{DynamicResource MahApps.Brushes.AccentBase}"
                                  BorderBrush="{DynamicResource MahApps.Brushes.AccentBase}"
                                  VerticalAlignment="Center"
+                                 SelectedColor="{Binding ViewModel.ThemeColor, Mode=TwoWay}"
                                  DefaultColor="{Binding Theming.MainColourAsColour, Mode=OneWay}"
                                  IsAvailableColorPaletteVisible="True"
                                  mah:ControlsHelper.CornerRadius="{StaticResource ControlCornerRadius}"
@@ -54,6 +56,15 @@
                         HorizontalAlignment="Right"
                         mah:ControlsHelper.FocusBorderThickness="0" 
                         Command="{Binding ViewModel.MonetThemeCommand}"/>
+                
+                <Button Grid.Column="3" 
+                        Content="{DynamicResource ResetTheme}"
+                        Margin="5 0 0 0"
+                        Background="{DynamicResource MahApps.Brushes.AccentBase}"
+                        BorderThickness="0"
+                        HorizontalAlignment="Right"
+                        mah:ControlsHelper.FocusBorderThickness="0" 
+                        Command="{Binding ViewModel.ResetThemeCommand}"/>
                 
             </Grid>
         </GroupBox>

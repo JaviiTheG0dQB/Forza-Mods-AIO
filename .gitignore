@@ -401,6 +401,8 @@ FodyWeavers.xsd
 *.sln.iml
 
 
-
 ###### -- Custom Ignore Section, Make sure all files you add to the git repo are below this line  --  ######
 
+# JetBrains IDE files
+.idea/
+*.DotSettings.user
