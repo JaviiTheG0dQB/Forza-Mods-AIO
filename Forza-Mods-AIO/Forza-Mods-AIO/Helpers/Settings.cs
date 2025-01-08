@@ -36,4 +36,25 @@ public static class Settings
             return null;
         }
     }
+
+    public static void SaveLanguage(string language)
+    {
+        var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        
+        // Remove existing setting if it exists
+        if (config.AppSettings.Settings["Language"] != null)
+        {
+            config.AppSettings.Settings.Remove("Language");
+        }
+        
+        // Add the new setting
+        config.AppSettings.Settings.Add("Language", language);
+        config.Save(ConfigurationSaveMode.Modified);
+        ConfigurationManager.RefreshSection("appSettings");
+    }
+
+    public static string LoadLanguage()
+    {
+        return ConfigurationManager.AppSettings["Language"] ?? "English";
+    }
 } 

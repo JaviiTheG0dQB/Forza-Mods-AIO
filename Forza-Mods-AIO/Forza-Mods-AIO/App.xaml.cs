@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Forza_Mods_AIO.Cheats;
+using Forza_Mods_AIO.Helpers;
 using Forza_Mods_AIO.Models;
 using Forza_Mods_AIO.Resources;
 using Forza_Mods_AIO.Resources.Keybinds;
@@ -64,15 +65,43 @@ public partial class App
         {
             base.OnStartup(e);
             SetupExceptionHandling();
+            
+            // Initialize the theme
+            Theming.GetInstance().InitializeTheme();
+            
+            // Load saved language
+            var savedLanguage = Settings.LoadLanguage();
+            if (!string.IsNullOrEmpty(savedLanguage))
+            {
+                try
+                {
+                    var uri = new Uri($"/Resources/Translations/{savedLanguage}.xaml", UriKind.Relative);
+                    var langDict = new ResourceDictionary { Source = uri };
+
+                    // Remove existing language dictionary if it exists
+                    var resources = Current.Resources.MergedDictionaries;
+                    var langDictToRemove = resources.FirstOrDefault(dict => 
+                        dict.Source?.OriginalString.Contains("/Resources/Translations/") == true);
+                        
+                    if (langDictToRemove != null)
+                    {
+                        resources.Remove(langDictToRemove);
+                    }
+
+                    // Add the new language dictionary
+                    resources.Add(langDict);
+                }
+                catch
+                {
+                    // If loading fails, it will fallback to English
+                }
+            }
         }
         else
         {
             MessageBox.Show("Another instance of the tool is already running.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             Current.Shutdown();
         }
-
-        // Initialize the theme
-        Theming.GetInstance().InitializeTheme();
     }
     
     // https://stackoverflow.com/a/46804709
