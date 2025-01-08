@@ -291,6 +291,10 @@
     <system:String x:Key="ChangeTheme">Change Theme</system:String>
     <system:String x:Key="MonetTheme">Monet Theme</system:String>
     <system:String x:Key="Language">Language</system:String>
+    <system:String x:Key="ResetLanguage">Reset Language</system:String>
+    <system:String x:Key="ResetTheme">Reset Theme</system:String>
+    
+    <!-- Language Names -->
     <system:String x:Key="English">English</system:String>
     <system:String x:Key="Afrikaans">Afrikaans</system:String>
     <system:String x:Key="Arabic">Arabic</system:String>
@@ -323,6 +327,5 @@
     <system:String x:Key="Turkish">Turkish</system:String>
     <system:String x:Key="Ukrainian">Ukrainian</system:String>
     <system:String x:Key="Vietnamese">Vietnamese</system:String>
-    <system:String x:Key="ResetTheme">Reset Theme</system:String>
     
 </ResourceDictionary>
