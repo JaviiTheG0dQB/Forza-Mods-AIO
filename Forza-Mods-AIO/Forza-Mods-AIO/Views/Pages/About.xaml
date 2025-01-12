@@ -47,5 +47,6 @@
         <TextBlock Text="Mark - Backend Help" />
         <TextBlock Text="Anonymous - SQL" />
         <TextBlock Text="Ucxh - Mission time scale, Race time scale" />
+        <TextBlock Text="Ghosttt - Theme &amp; Language Implementation" />
     </StackPanel>
 </Page>

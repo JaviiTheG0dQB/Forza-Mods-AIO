@@ -11,6 +11,12 @@ public class TranslationComboboxItem : ComboBoxItem
             typeof(string),
             typeof(TranslationComboboxItem),
             new PropertyMetadata(default(string)));
+            
+    public static readonly DependencyProperty LanguageCodeProperty
+        = DependencyProperty.Register(nameof(LanguageCode),
+            typeof(string),
+            typeof(TranslationComboboxItem),
+            new PropertyMetadata(default(string)));
     
     [Bindable(true)]
     [Category("Forza-Mods-AIO")]
@@ -18,6 +24,14 @@ public class TranslationComboboxItem : ComboBoxItem
     {
         get => (string)GetValue(TranslatorsProperty);
         set => SetValue(TranslatorsProperty, value);
+    }
+    
+    [Bindable(true)]
+    [Category("Forza-Mods-AIO")]
+    public string LanguageCode
+    {
+        get => (string)GetValue(LanguageCodeProperty);
+        set => SetValue(LanguageCodeProperty, value);
     }
 
     static TranslationComboboxItem()
